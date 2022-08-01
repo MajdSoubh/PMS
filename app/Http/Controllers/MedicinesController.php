@@ -57,11 +57,6 @@ class MedicinesController extends Controller implements ViewMethods
         return $pdf->download('medicines.pdf');
     }
 
-    public function all()
-    {
-        $medicines = Medicine::all();
-        return response()->json(["success" => true, "data" => $medicines]);
-    }
     public function store(StoreMedicineRequest $request)
     {
         $validated = $request->validated();
@@ -69,25 +64,6 @@ class MedicinesController extends Controller implements ViewMethods
             "user_id" => Auth::user()->id,
         ]);
         return response()->json(["instance" => $medicine], 201);
-    }
-
-
-
-
-    public function isExist(Request $request)
-    {
-        $exist = 0;
-
-        if ($request->has("medicine"))
-        {
-
-            $exist = Medicine::join("stocks", "medicines.id", "=", "stocks.medicine_id")->where("stocks.user_id", "=", Auth::User()->id)->where("name", "=", $request->medicine)->count();
-            if ($exist !== 0)
-            {
-                $exist = 1;
-            }
-        }
-        return response()->json(['success' => true, "exist" => $exist]);
     }
 
     public function modify(Request $request)
@@ -120,7 +96,6 @@ class MedicinesController extends Controller implements ViewMethods
         return response()->json(["success" => 1, "instance" => $medicine]);
     }
 
-
     public function show(Request $request)
     {
         $medicine = null;
@@ -142,5 +117,25 @@ class MedicinesController extends Controller implements ViewMethods
             Medicine::destroy($request->id);
         }
         return response()->json(["success" => 1]);
+    }
+    public function all()
+    {
+        $medicines = Medicine::all();
+        return response()->json(["success" => true, "data" => $medicines]);
+    }
+    public function isExist(Request $request)
+    {
+        $exist = 0;
+
+        if ($request->has("medicine"))
+        {
+
+            $exist = Medicine::join("stocks", "medicines.id", "=", "stocks.medicine_id")->where("stocks.user_id", "=", Auth::User()->id)->where("name", "=", $request->medicine)->count();
+            if ($exist !== 0)
+            {
+                $exist = 1;
+            }
+        }
+        return response()->json(['success' => true, "exist" => $exist]);
     }
 }

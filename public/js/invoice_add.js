@@ -208,13 +208,18 @@ function fillInvoiceDetails() {
 
 
 function saveInvoice() {
+    //check all inputs if they valid
     validate();
+    //get all data of invoice
     invoice = getInvoiceDetails();
     console.log(invoice);
+    //send http post request contain invoice data to server
     promiseJax("/invoice/add", invoice, "POST", false).then(response => {
+        //if invoice saved successfully show message success
         openPopup('/ajax/popup/feedback', { msg: "success" });
 
     }).catch((response) => {
+        //if there is any error print it
         console.log(response);
         let errorList = document.getElementById("invalid-feedback-list");
         while (errorList.firstChild) {

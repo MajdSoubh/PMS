@@ -38,7 +38,7 @@ class StoreInvoiceRequest extends FormRequest
             "items.*.qty" => ["required", "numeric", "min:1"],
             "items.*.exp" => ["required", "date"],
             "items.*.discount" => "required|numeric|min:0",
-            //"items" => ["required", "array", new checkMedicineQuantity()],
+            "items" => ["required", "array", new checkMedicineQuantity()],
             "provider" => Rule::in(["Cash", "Net Banking"]),
             "status" => Rule::in(["Paid", "Partially Paid"]),
 

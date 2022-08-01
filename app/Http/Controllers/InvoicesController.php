@@ -75,40 +75,42 @@ class InvoicesController extends Controller implements ViewMethods
         $invoice_number = Invoice::max('id') + 1;
         return view("invoices/invoice_add", compact("invoice_number"));
     }
-    public function returnedMedicines()
-    {
-        return view("invoices/returned_medicines");
-    }
+    /**
+     * Store new Invoice
+     */
     public function store(StoreInvoiceRequest $request)
-    {
+    { //take all validated elements
         $validated = $request->validated();
         $customerId = null;
+        //get customer if it filled in request
         if ($request->filled("customer"))
             $customerId = Customer::where("user_id", Auth::user()->id)->where("name", $request->customer)->first()->id;
+        //create new payment
         $payment = Payment::create($validated);
-
+        //create new invoice and bound it with customer and payment
         $invoice = Invoice::create($validated + [
             'user_id' => Auth::user()->id,
             'payment_id' => $payment->id,
             'customer_id' => $customerId
         ]);
-
+        //for each item in invoice
         foreach ($request->items as $item)
         {
-
+            //find the related medicine
             $medicine = Medicine::where("user_id", Auth::user()->id)->where("name", $item['medicine'])->first();
+            //create new invoice items
             $invoiceItem = InvoiceItems::create($item + [
                 "medicine_id" => $medicine->id,
                 "invoice_id" => $invoice->id,
             ]);
             $query = Stock::where("user_id", Auth::user()->id)->where("medicine_id", $medicine->id)->where("exp", $item['exp'])->first();
-            if ($query->qty >= $item['qty'])
-            {
-                $query->decrement('qty', $item['qty']);
-            }
-        }
-        Chest::where("user_id", Auth::user()->id)->increment("total", (int)$validated["paid"]);
 
+            //decrease the amount of this item from the stock
+            $query->decrement('qty', $item['qty']);
+        }
+        //increase the chest value by the amount of paid
+        Chest::where("user_id", Auth::user()->id)->increment("total", (int)$validated["paid"]);
+        //return response as json have invoice and payment with status 201
         return response()->json(["invoice" => $invoice, "payment" => $payment], 201);
     }
     public function destroy(Request $request)
@@ -129,5 +131,9 @@ class InvoicesController extends Controller implements ViewMethods
         $payment =  Invoice::find($id)->payment;
         $customer =  Invoice::find($id)->customer;
         return view("sub/invoice_items", compact("invoice", "payment", "customer", "items"))->render();
+    }
+    public function returnedMedicines()
+    {
+        return view("invoices/returned_medicines");
     }
 }
