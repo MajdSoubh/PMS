@@ -1,0 +1,2061 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "PMS",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/employee": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Return all employees",
+                "operationId": "employeeAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Employee register",
+                "description": "Employee register here",
+                "operationId": "EmployeeRegister",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstName": {
+                                        "description": "User's first name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "lastName": {
+                                        "description": "User's last name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "roles": {
+                                        "description": "Pharmacy name",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "role": {
+                                                    "description": "Role name",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    },
+                                    "email": {
+                                        "description": "User's email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Password confirmation",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Un proccessiable content"
+                    }
+                }
+            }
+        },
+        "/api/employee/{id}": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Find employee by id",
+                "operationId": "showEmployee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Edit employee by id",
+                "operationId": "EmployeeUpdate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstName": {
+                                        "description": "User's first name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "lastName": {
+                                        "description": "User's last name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "pharmacyName": {
+                                        "description": "Pharmacy name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "roles": {
+                                        "description": "Pharmacy name",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "role": {
+                                                    "description": "Role name",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    },
+                                    "email": {
+                                        "description": "User's email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Password confirmation",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Un proccessiable content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Delete employee by id",
+                "operationId": "deleteEmployee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Employee not found"
+                    }
+                }
+            }
+        },
+        "/api/owner": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Owner Register",
+                "description": "Owner Register here",
+                "operationId": "OwnerRegister",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstName": {
+                                        "description": "User's first name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "lastName": {
+                                        "description": "User's last name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "pharmacyName": {
+                                        "description": "Pharmacy name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "licence": {
+                                        "description": "Pharmacy licence",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "email": {
+                                        "description": "User's email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Password confirmation",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Un proccessiable content"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Users login",
+                "description": "Users login here",
+                "operationId": "UserLogin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "User's email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Un proccessiable content"
+                    }
+                }
+            }
+        },
+        "/api/customer": {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Return all customers",
+                "operationId": "customerAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Create new Customer",
+                "operationId": "createCustomer",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Customer name",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "contact": {
+                                        "description": "Customer phone number",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "address": {
+                                        "description": "Customer address",
+                                        "type": "integer",
+                                        "nullable": false
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/{id}": {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Find customer by id",
+                "operationId": "getCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Edit customer by id",
+                "operationId": "editCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Customer name",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "contact": {
+                                        "description": "Customer phone number",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "address": {
+                                        "description": "Customer address",
+                                        "type": "integer",
+                                        "nullable": false
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Delete customer by id",
+                "operationId": "deleteCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Customer not found"
+                    }
+                }
+            }
+        },
+        "/api/drug": {
+            "get": {
+                "tags": [
+                    "Drug"
+                ],
+                "summary": "Return all drugs",
+                "operationId": "drugAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DrugSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Drug": {
+            "post": {
+                "tags": [
+                    "Drug"
+                ],
+                "summary": "Create new Drug",
+                "operationId": "createDrug",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Drug name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "generic": {
+                                        "description": "Drug generic name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "description": {
+                                        "description": "Drug description",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "price": {
+                                        "description": "Drug price",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DrugSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/drug/{id}": {
+            "get": {
+                "tags": [
+                    "Drug"
+                ],
+                "summary": "Find Drug by id",
+                "operationId": "getDrug",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Drug ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DrugSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Drug not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Drug"
+                ],
+                "summary": "Edit Drug by id",
+                "operationId": "editDrug",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Drug ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Drug name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "generic": {
+                                        "description": "Drug generic name",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "description": {
+                                        "description": "Drug description",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "price": {
+                                        "description": "Drug price",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DrugSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Drug"
+                ],
+                "summary": "Delete Drug by id",
+                "operationId": "deleteDrug",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Drug ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Drug not found"
+                    }
+                }
+            }
+        },
+        "/api/invoice": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Return all Invoices",
+                "operationId": "InvoiceAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Create new Invoice",
+                "operationId": "createInvoice",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "paid": {
+                                        "description": "Paid amount",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Date of invoice created",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "customer": {
+                                        "description": "Customer related to invoice",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "items": {
+                                        "description": "Invoice items",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "drug": {
+                                                    "description": "Drug related to invoice",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "qty": {
+                                                    "description": "Quantity of drug",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "cost": {
+                                                    "description": "Cost of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "price": {
+                                                    "description": "Price of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "discount": {
+                                                    "description": "Amount of discount for drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "exp": {
+                                                    "description": "Expiration date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/invoice/{id}": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Find Invoice by id",
+                "operationId": "getInvoice",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Invoice ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invoice not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Edit Invoice by id",
+                "operationId": "editInvoice",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Invoice ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Invoice identifier",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "paid": {
+                                        "description": "Paid amount",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Date of invoice created",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "customer": {
+                                        "description": "Customer related to invoice",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "items": {
+                                        "description": "Invoice items",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "drug": {
+                                                    "description": "Drug related to invoice",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "qty": {
+                                                    "description": "Quantity of drug",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "cost": {
+                                                    "description": "Cost of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "price": {
+                                                    "description": "Price of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "discount": {
+                                                    "description": "Amount of discount for drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "exp": {
+                                                    "description": "Expiration date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Delete Invoice by id",
+                "operationId": "deleteInvoice",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Invoice ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Invoice not found"
+                    }
+                }
+            }
+        },
+        "/api/purchase": {
+            "get": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Return all Purchases",
+                "operationId": "PurchaseAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Purchase": {
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Create new Purchase",
+                "operationId": "createPurchase",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "paid": {
+                                        "description": "Paid amount",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Date of Purchase created",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "supplier": {
+                                        "description": "Supplier related to Purchase",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "items": {
+                                        "description": "Purchase items",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "drug": {
+                                                    "description": "Drug related to Purchase",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "qty": {
+                                                    "description": "Quantity of drug",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "cost": {
+                                                    "description": "Cost of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "exp": {
+                                                    "description": "Expiration date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                },
+                                                "mfd": {
+                                                    "description": "Maunfactoring date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/purchase/{id}": {
+            "get": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Find Purchase by id",
+                "operationId": "getPurchase",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Purchase ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Purchase not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Edit Purchase by id",
+                "operationId": "editPurchase",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Purchase ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "paid": {
+                                        "description": "Paid amount",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Date of Purchase created",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "supplier": {
+                                        "description": "Supplier related to Purchase",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "items": {
+                                        "description": "Purchase items",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "drug": {
+                                                    "description": "Drug related to Purchase",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "qty": {
+                                                    "description": "Quantity of drug",
+                                                    "type": "integer",
+                                                    "nullable": "false"
+                                                },
+                                                "cost": {
+                                                    "description": "Cost of drug",
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "nullable": "false"
+                                                },
+                                                "exp": {
+                                                    "description": "Expiration date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                },
+                                                "mfd": {
+                                                    "description": "Maunfactoring date of drug",
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "nullable": "false"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Delete Purchase by id",
+                "operationId": "deletePurchase",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Purchase ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Purchase not found"
+                    }
+                }
+            }
+        },
+        "/api/stock": {
+            "get": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Return all Stocks",
+                "operationId": "StockAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Create new Stock",
+                "operationId": "createStock",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mfd": {
+                                        "description": "Stock manufactoring date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "exp": {
+                                        "description": "Stock expiration date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "Drug": {
+                                        "description": "Related Drug",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "qty": {
+                                        "description": "Stock quantity",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "cost": {
+                                        "description": "Stock cost",
+                                        "type": "number",
+                                        "format": "double",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/stock/{id}": {
+            "get": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Find Stock by id",
+                "operationId": "getStock",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stock ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Stock not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Edit Stock by id",
+                "operationId": "editStock",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stock ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mfd": {
+                                        "description": "Stock manufactoring date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "exp": {
+                                        "description": "Stock expiration date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    },
+                                    "Drug": {
+                                        "description": "Related Drug",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "qty": {
+                                        "description": "Stock quantity",
+                                        "type": "integer",
+                                        "nullable": "false"
+                                    },
+                                    "cost": {
+                                        "description": "Stock cost",
+                                        "type": "number",
+                                        "format": "double",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Delete Stock by id",
+                "operationId": "deleteStock",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stock ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Stock not found"
+                    }
+                }
+            }
+        },
+        "/api/supplier": {
+            "get": {
+                "tags": [
+                    "Supplier"
+                ],
+                "summary": "Return all Suppliers",
+                "operationId": "SupplierAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Supplier": {
+            "post": {
+                "tags": [
+                    "Supplier"
+                ],
+                "summary": "Create new Supplier",
+                "operationId": "createSupplier",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Supplier name",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "contact": {
+                                        "description": "Supplier phone number",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "address": {
+                                        "description": "Supplier address",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "email": {
+                                        "description": "Supplier email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/supplier/{id}": {
+            "get": {
+                "tags": [
+                    "Supplier"
+                ],
+                "summary": "Find Supplier by id",
+                "operationId": "getSupplier",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Supplier ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Supplier not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Supplier"
+                ],
+                "summary": "Edit Supplier by id",
+                "operationId": "editSupplier",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Supplier ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Supplier name",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "contact": {
+                                        "description": "Supplier phone number",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "address": {
+                                        "description": "Supplier address",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "email": {
+                                        "description": "Supplier email",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Supplier"
+                ],
+                "summary": "Delete Supplier by id",
+                "operationId": "deleteSupplier",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Supplier ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Supplier not found"
+                    }
+                }
+            }
+        },
+        "/api/voucher": {
+            "get": {
+                "tags": [
+                    "Voucher"
+                ],
+                "summary": "Return all Vouchers",
+                "operationId": "VoucherAll",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoucherSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Voucher"
+                ],
+                "summary": "Create new Voucher",
+                "operationId": "createVoucher",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "type": {
+                                        "description": "Voucher type",
+                                        "type": "string",
+                                        "enum": [
+                                            "cash",
+                                            "payment",
+                                            "recipt"
+                                        ],
+                                        "nullable": "false"
+                                    },
+                                    "amount": {
+                                        "description": "Voucher amount",
+                                        "type": "number",
+                                        "format": "double",
+                                        "nullable": "false"
+                                    },
+                                    "description": {
+                                        "description": "Voucher description",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Voucher date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoucherSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/voucher/{id}": {
+            "get": {
+                "tags": [
+                    "Voucher"
+                ],
+                "summary": "Find Voucher by id",
+                "operationId": "getVoucher",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Voucher ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoucherSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Voucher not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Voucher"
+                ],
+                "summary": "Edit Voucher by id",
+                "operationId": "editVoucher",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Voucher ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "type": {
+                                        "description": "Voucher type",
+                                        "type": "string",
+                                        "enum": [
+                                            "cash",
+                                            "payment",
+                                            "recipt"
+                                        ],
+                                        "nullable": "false"
+                                    },
+                                    "amount": {
+                                        "description": "Voucher amount",
+                                        "type": "number",
+                                        "format": "double",
+                                        "nullable": "false"
+                                    },
+                                    "description": {
+                                        "description": "Voucher description",
+                                        "type": "string",
+                                        "nullable": "false"
+                                    },
+                                    "date": {
+                                        "description": "Voucher date",
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoucherSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Voucher"
+                ],
+                "summary": "Delete Voucher by id",
+                "operationId": "deleteVoucher",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Voucher ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "402": {
+                        "description": "Voucher not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CustomerSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Customer identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "name": {
+                        "description": "Cutomer name",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "contact": {
+                        "description": "Customer phone number",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "address": {
+                        "description": "Customer address",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacySchema"
+                    }
+                },
+                "type": "object"
+            },
+            "DrugSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Drug identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "name": {
+                        "description": "Drug name",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "generic": {
+                        "description": "Drug generic name",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "description": {
+                        "description": "Drug description",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "price": {
+                        "description": "Drug price",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacySchema"
+                    }
+                },
+                "type": "object"
+            },
+            "InvoiceSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Invoice identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "total": {
+                        "description": "Invoice total price",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "totalDiscount": {
+                        "description": "Invoice total discount",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "totalNet": {
+                        "description": "Invoice total net",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "totalProfit": {
+                        "description": "Invoice total Profit",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "paid": {
+                        "description": "Paid amount",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "date": {
+                        "description": "Date of invoice created",
+                        "type": "string",
+                        "format": "date",
+                        "nullable": "false"
+                    },
+                    "customer": {
+                        "$ref": "#/components/schemas/CustomerSchema"
+                    }
+                },
+                "type": "object"
+            },
+            "PurchaseSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Purchase identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "total": {
+                        "description": "Purchase total price",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "paid": {
+                        "description": "Paid amount",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "date": {
+                        "description": "Date of Purchase created",
+                        "type": "string",
+                        "format": "date",
+                        "nullable": "false"
+                    },
+                    "supplier": {
+                        "$ref": "#/components/schemas/SupplierSchema"
+                    }
+                },
+                "type": "object"
+            },
+            "StockSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Drug identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "mfd": {
+                        "description": "Drug manufactoring date",
+                        "type": "string",
+                        "format": "date",
+                        "nullable": "false"
+                    },
+                    "exp": {
+                        "description": "Drug expiration date",
+                        "type": "string",
+                        "format": "date",
+                        "nullable": "false"
+                    },
+                    "drug": {
+                        "$ref": "#/components/schemas/DrugSchema"
+                    },
+                    "qty": {
+                        "description": "Drug quantity",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "cost": {
+                        "description": "Drug cost",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": "false"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacySchema"
+                    }
+                },
+                "type": "object"
+            },
+            "SupplierSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Supplier identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "name": {
+                        "description": "Supplier name",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "contact": {
+                        "description": "Supplier phone number",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "address": {
+                        "description": "Supplier address",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "email": {
+                        "description": "Supplier email",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacySchema"
+                    }
+                },
+                "type": "object"
+            },
+            "VoucherSchema": {
+                "properties": {
+                    "id": {
+                        "description": "Voucher identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "type": {
+                        "description": "Voucher type",
+                        "type": "string",
+                        "enum": [
+                            "cash",
+                            "payment",
+                            "recipt"
+                        ],
+                        "nullable": "false"
+                    },
+                    "amount": {
+                        "description": "Voucher amount",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": "false"
+                    },
+                    "description": {
+                        "description": "Voucher description",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "date": {
+                        "description": "Voucher date",
+                        "type": "string",
+                        "format": "date",
+                        "nullable": "false"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacySchema"
+                    }
+                },
+                "type": "object"
+            },
+            "PharmacySchema": {
+                "properties": {
+                    "id": {
+                        "description": "Pharmacy identifier",
+                        "type": "integer",
+                        "nullable": "false"
+                    },
+                    "name": {
+                        "description": "Pharmacy name",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "licence": {
+                        "description": "Pharmacy licence id",
+                        "type": "string",
+                        "nullable": "false"
+                    },
+                    "safe": {
+                        "description": "Safe amount",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": "false"
+                    },
+                    "chest": {
+                        "description": "Chest amount",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": "false"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "404": {
+                "description": "Employee not found"
+            }
+        }
+    }
+}
