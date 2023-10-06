@@ -54,8 +54,8 @@ This is a web application built to make jobs and proccesses inside pharmacies mu
 ## Screen Shots
 
 <p align="center">
-<img src="screenshots/dashbaord.PNG" alt="Dashboard" width="50%" >
+<img src="screenshots/dashboard.PNG" alt="Dashboard" width="50%" >
 <img src="screenshots/new_sale_invoice.PNG" alt="New Invoice" width="50%" >
 <img src="screenshots/inventory_manager.PNG" alt="Inventory" width="50%" >
-<img src="screenshots/add_employee.PNG" alt="New Employee" width="50%" >
+<img src="screenshots/add-employee.PNG" alt="New Employee" width="50%" >
 </p>
